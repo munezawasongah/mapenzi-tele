@@ -86,6 +86,11 @@ io.on('connection', (socket) => {
 app.set('io', io);
 app.set('onlineUsers', onlineUsers);
 
+// ── LEGAL PAGES ───────────────────────────────────────
+['privacy', 'terms', 'safety'].forEach(page => {
+  app.get('/' + page, (req, res) => res.sendFile(path.join(__dirname, 'public', 'legal', page + '.html')));
+});
+
 // ── CATCH-ALL → serve index.html ──────────────────────
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

@@ -11,6 +11,17 @@ function haversine(lat1, lng1, lat2, lng2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
+// Round to whole km (min 1) so exact positions can't be triangulated
+function approxKm(a, b) {
+  if (a.lat == null || a.lng == null || b.lat == null || b.lng == null) return null;
+  return Math.max(1, Math.round(haversine(+a.lat, +a.lng, +b.lat, +b.lng)));
+}
+// Strip raw coordinates before anything leaves the server
+function publicUser(u, me) {
+  const { lat, lng, ...rest } = u;
+  return { ...rest, distance_km: me ? approxKm(me, { lat, lng }) : null };
+}
+
 // GET /api/users/discover  — sorted by distance if user has location
 router.get('/discover', auth, async (req, res) => {
   try {
@@ -36,16 +47,9 @@ router.get('/discover', auth, async (req, res) => {
       [req.user.id]
     );
 
-    let users = rows;
-    // Sort by real distance if location available
-    if (lat && lng) {
-      users = rows
-        .map(u => ({
-          ...u,
-          distance_km: u.lat && u.lng ? haversine(lat, lng, u.lat, u.lng) : 99999
-        }))
-        .sort((a, b) => a.distance_km - b.distance_km);
-    }
+    const users = rows
+      .map(u => publicUser(u, { lat, lng }))
+      .sort((a, b) => (a.distance_km ?? 99999) - (b.distance_km ?? 99999));
 
     res.json(users);
   } catch (e) {
@@ -67,7 +71,8 @@ router.get('/:id', auth, async (req, res) => {
       [req.params.id]
     );
     if (!rows[0]) return res.status(404).json({ error: 'User not found' });
-    res.json(rows[0]);
+    const me = await db.query('SELECT lat, lng FROM users WHERE id=$1', [req.user.id]);
+    res.json(publicUser(rows[0], me.rows[0]));
   } catch (e) {
     res.status(500).json({ error: 'Failed to load user' });
   }
