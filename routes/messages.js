@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const db = require('../db');
 const auth = require('../middleware/auth');
-const { requirePaid } = require('../middleware/auth');
 const { sendPush } = require('../utils/push');
 
 // GET /api/messages/:matchId  — fetch conversation
-router.get('/:matchId', auth, requirePaid, async (req, res) => {
+router.get('/:matchId', auth, async (req, res) => {
   try {
     // Verify user is part of this match
     const match = await db.query(
@@ -37,7 +36,7 @@ router.get('/:matchId', auth, requirePaid, async (req, res) => {
 });
 
 // POST /api/messages/:matchId  — send message
-router.post('/:matchId', auth, requirePaid, async (req, res) => {
+router.post('/:matchId', auth, async (req, res) => {
   const { text, type = 'text', media_url } = req.body;
   if (!text && !media_url) return res.status(400).json({ error: 'text or media_url required' });
 
@@ -84,7 +83,7 @@ router.post('/:matchId', auth, requirePaid, async (req, res) => {
 });
 
 // GET /api/messages  — all conversations (inbox)
-router.get('/', auth, requirePaid, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const { rows } = await db.query(
       `SELECT m.id as match_id, m.created_at as matched_at,

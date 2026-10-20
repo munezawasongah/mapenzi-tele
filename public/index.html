@@ -50,34 +50,19 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 .ticker-item{font-size:13px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px}
 .ticker-item span{color:var(--fire)}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.hero{max-width:1180px;margin:0 auto;padding:80px 64px 50px;display:grid;grid-template-columns:1fr 400px;gap:60px;align-items:center;position:relative;z-index:1}
+.hero{max-width:1180px;margin:0 auto;padding:80px 64px 50px;display:grid;grid-template-columns:1fr;max-width:820px;gap:60px;align-items:center;position:relative;z-index:1}
 .hero-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--fire);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:8px}
 .e-dot{width:6px;height:6px;border-radius:50%;background:var(--fire);animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 .hero h1{font-size:clamp(40px,5.5vw,70px);font-weight:900;line-height:1.0;letter-spacing:-2px;margin-bottom:20px}
 .hero h1 em{font-style:normal;display:block}
 .hero-sub{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:490px}
-.price-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,230,0,.1);border:1.5px solid rgba(255,230,0,.4);border-radius:50px;padding:10px 20px;margin-bottom:22px;font-size:14px;font-weight:700;color:var(--volt)}
-.price-badge .amt{font-size:22px;font-weight:900}
 .mood-row{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
 .mood-tag{padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;background:var(--card);border:1.5px solid var(--border);cursor:pointer;transition:all .2s;user-select:none}
 .mood-tag:hover,.mood-tag.on{border-color:var(--fire);color:var(--fire);background:rgba(255,61,90,.1)}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .hero-note{font-size:12px;color:var(--muted);margin-top:12px}
 .hero-note span{color:var(--online)}
-.vibe-strip{display:flex;gap:36px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
-.vibe-stat .num{font-size:28px;font-weight:900;letter-spacing:-1px}
-.vibe-stat .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
-.card-stack{position:relative;height:480px}
-.stack-card{position:absolute;border-radius:24px;overflow:hidden;background:var(--card);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.6);cursor:pointer;transition:transform .3s}
-.stack-card:hover{transform:scale(1.02) rotate(0deg)!important}
-.sc-1{width:230px;height:330px;top:0;left:80px;z-index:3;transform:rotate(-3deg)}
-.sc-2{width:210px;height:300px;top:60px;right:20px;z-index:2;transform:rotate(4deg)}
-.sc-3{width:190px;height:270px;top:150px;left:20px;z-index:1;transform:rotate(-6deg)}
-.sc-face{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:72px;background:linear-gradient(160deg,var(--deep),var(--card));overflow:hidden}
-.sc-face img{width:100%;height:100%;object-fit:cover}
-.sc-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,15,.97));padding:18px 14px 12px}
-.sc-name{font-size:16px;font-weight:800}.sc-vibe{font-size:11px;color:var(--fire);font-weight:600;margin-top:2px}
 .how{max-width:1100px;margin:0 auto;padding:50px 64px;position:relative;z-index:1}
 .how h2{font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:38px;text-align:center}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -104,27 +89,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 .auth-switch a{color:var(--fire);cursor:pointer;font-weight:700}
 .field-error{font-size:11px;color:var(--fire);margin-top:4px}
 
-/* ══ PAYMENT MODAL ══ */
-.pay-modal{background:var(--deep);border:1px solid var(--border);border-radius:var(--r-lg);padding:38px;width:100%;max-width:440px;position:relative;animation:slideUp .3s ease;text-align:center;max-height:90vh;overflow-y:auto;}
-.pay-amount{font-size:52px;font-weight:900;letter-spacing:-2px;margin:14px 0 3px}
-.pay-period{font-size:13px;color:var(--muted);margin-bottom:22px}
-.pay-perks{text-align:left;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 18px;margin-bottom:20px}
-.pay-perk{font-size:13px;color:var(--text);margin:6px 0;display:flex;align-items:center;gap:8px}
-.pay-perk::before{content:'✓';color:var(--online);font-weight:800}
-.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
-.pay-method{background:var(--card);border:2px solid var(--border);border-radius:var(--r-lg);padding:14px 10px;cursor:pointer;transition:all .22s;text-align:center}
-.pay-method:hover,.pay-method.sel{border-color:var(--volt);background:rgba(255,230,0,.06)}
-.pay-method .icon{font-size:26px;margin-bottom:5px}
-.pay-method .name{font-size:13px;font-weight:700}
-.pay-method .hint{font-size:10px;color:var(--muted);margin-top:2px}
-.pay-input-wrap{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;text-align:left;display:none}
-.pay-input-wrap.show{display:block}
-.pay-status{padding:12px;border-radius:var(--r);text-align:center;font-size:14px;font-weight:700;display:none;margin-bottom:12px}
-.pay-status.processing{background:rgba(255,230,0,.1);color:var(--volt);border:1px solid rgba(255,230,0,.3);display:block}
-.pay-status.success{background:rgba(57,255,126,.1);color:var(--online);border:1px solid rgba(57,255,126,.3);display:block}
-.pay-status.error{background:rgba(255,61,90,.1);color:var(--fire);border:1px solid rgba(255,61,90,.3);display:block}
-.poll-progress{background:var(--deep);border-radius:50px;height:3px;overflow:hidden;margin-top:8px;display:none}
-.poll-bar{height:100%;background:linear-gradient(90deg,var(--fire),var(--volt));border-radius:50px;animation:poll 3s linear infinite}
 @keyframes poll{from{width:0%}to{width:100%}}
 
 /* ══ APP SHELL ══ */
@@ -168,7 +132,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 .pcard-pills{position:absolute;bottom:9px;left:9px;right:9px;display:flex;gap:4px;flex-wrap:wrap}
 .ppill{font-size:10px;font-weight:700;padding:3px 8px;border-radius:50px;background:rgba(8,8,15,.85);backdrop-filter:blur(4px);border:1px solid var(--border)}
 .ppill.av{border-color:var(--online);color:var(--online)}
-.ppill.vip{border-color:var(--volt);color:var(--volt)}
 .pcard-body{padding:12px 13px 7px}
 .pcard-name-row{display:flex;align-items:center;gap:6px;margin-bottom:3px}
 .pcard-name{font-size:15px;font-weight:800}
@@ -313,21 +276,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 .vs-tag{padding:7px 14px;border-radius:50px;font-size:12px;font-weight:700;background:var(--deep);border:1.5px solid var(--border);cursor:pointer;transition:all .18s}
 .vs-tag.sel{border-color:var(--fire);color:var(--fire);background:rgba(255,61,90,.1)}
 
-/* ══ PREMIUM MODAL ══ */
-.prem-ov{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);z-index:900;display:flex;align-items:center;justify-content:center;padding:20px}
-.prem-modal{background:var(--deep);border:1px solid var(--border);border-radius:var(--r-lg);width:100%;max-width:540px;padding:36px;text-align:center;animation:slideUp .3s ease;position:relative}
-.prem-modal h2{font-size:24px;font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
-.prem-modal .sub{color:var(--muted);margin-bottom:24px;font-size:13px}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
-.plan{background:var(--card);border:2px solid var(--border);border-radius:var(--r-lg);padding:18px 12px;cursor:pointer;transition:all .22s;position:relative}
-.plan:hover,.plan.sel{border-color:var(--fire);background:rgba(255,61,90,.07)}
-.plan.pop{border-color:var(--volt)}
-.plan-pb{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--volt);color:var(--ink);font-size:9px;font-weight:800;padding:2px 9px;border-radius:50px;white-space:nowrap}
-.plan-lbl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.plan-price{font-size:22px;font-weight:900}
-.plan-period{font-size:11px;color:var(--muted);margin-bottom:10px}
-.plan-feat{text-align:left;font-size:11px;color:var(--muted);margin:3px 0;display:flex;gap:4px}
-.plan-feat::before{content:'✓';color:var(--online);font-weight:800}
 
 /* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-radius:50px;padding:10px 20px;font-size:14px;font-weight:700;z-index:9999;animation:toastIn .3s ease;box-shadow:0 8px 36px rgba(0,0,0,.6);display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
@@ -339,7 +287,7 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
 @keyframes flashFade{0%{opacity:1}100%{opacity:0}}
 
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:60px 24px 36px;text-align:center}.card-stack{display:none}
+  .hero{grid-template-columns:1fr;padding:60px 24px 36px;text-align:center}
   .lp-nav{padding:14px 22px}.how{padding:34px 22px}.steps{grid-template-columns:1fr}
   .sidebar{width:54px}.sb-btn{width:40px;height:40px;font-size:18px}
   #tab-discover,#tab-matches,#tab-notifications,#tab-profile{padding:15px 12px}
@@ -347,12 +295,9 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
   #tab-messages{flex-direction:column}
   .conv-list{width:100%;border-right:none;border-bottom:1px solid var(--border);max-height:180px}
   .pmodal{grid-template-columns:1fr}.pmodal-gallery{min-height:200px;border-radius:var(--r-lg) var(--r-lg) 0 0}
-  .plans{grid-template-columns:1fr}.vibe-strip{gap:20px;flex-wrap:wrap}
-  .pay-methods{grid-template-columns:1fr 1fr}
 }
 @media(max-width:480px){
   .lp-nav-links .btn-ghost{display:none}.hero h1{letter-spacing:-1px}
-  .pay-methods{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -365,27 +310,25 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
     <div class="logo">mapenzi<span>TELE</span></div>
     <div style="display:flex;gap:10px;align-items:center">
       <button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Sign In</button>
-      <button class="btn btn-fire btn-sm" onclick="openAuth('signup')">🔥 Join — KES 200</button>
+      <button class="btn btn-fire btn-sm" onclick="openAuth('signup')">🔥 Join Free</button>
     </div>
   </nav>
   <div class="ticker-wrap">
     <div class="ticker">
-      <div class="ticker-item"><span>🔥</span>12,400 people online right now</div>
       <div class="ticker-item"><span>📍</span>Nearest matches shown first</div>
       <div class="ticker-item"><span>⚡</span>No labels. No pressure.</div>
-      <div class="ticker-item"><span>🔒</span>One-time KES 200 · lifetime access</div>
-      <div class="ticker-item"><span>🔥</span>12,400 people online right now</div>
+      <div class="ticker-item"><span>🔓</span>100% free</div>
       <div class="ticker-item"><span>📍</span>Nearest matches shown first</div>
       <div class="ticker-item"><span>⚡</span>No labels. No pressure.</div>
-      <div class="ticker-item"><span>🔒</span>One-time KES 200 · lifetime access</div>
+      <div class="ticker-item"><span>🔓</span>100% free</div>
     </div>
   </div>
   <section class="hero">
     <div>
       <div class="hero-eyebrow"><div class="e-dot"></div> Honest · Bold · Judgment-free</div>
       <h1>Life's short.<em><span class="grad-text">Stop waiting.</span></em></h1>
-      <p class="hero-sub">mapenziTELE connects real people near you — no games, no pretending. Just good vibes, photo-verified profiles, and real-time chat.</p>
-      <div class="price-badge">🔓 Full access for just <span class="amt">&nbsp;KES 200</span>&nbsp;— one time, forever</div>
+      <p class="hero-sub">mapenziTELE connects people near you — no games, no pretending. Just good vibes and real-time chat.</p>
+      <div class="hero-note" style="font-size:14px;margin:0 0 22px">🔓 Completely free — no fees, no subscriptions.</div>
       <div class="mood-row">
         <div class="mood-tag on">🔥 Spontaneous</div>
         <div class="mood-tag">😌 Just Exploring</div>
@@ -394,28 +337,18 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
         <div class="mood-tag">🎲 No Strings</div>
       </div>
       <div class="hero-cta">
-        <button class="btn btn-fire" style="font-size:15px;padding:14px 32px" onclick="openAuth('signup')">🔥 Join for KES 200</button>
+        <button class="btn btn-fire" style="font-size:15px;padding:14px 32px" onclick="openAuth('signup')">🔥 Join Free</button>
         <button class="btn btn-ghost" onclick="openAuth('login')">Already in? →</button>
       </div>
-      <div class="hero-note">📍 Location-sorted matches &nbsp;·&nbsp; <span>Real profiles only</span> &nbsp;·&nbsp; 🔒 Safe & private</div>
-      <div class="vibe-strip">
-        <div class="vibe-stat"><div class="num grad-text">1.8M+</div><div class="lbl">Members</div></div>
-        <div class="vibe-stat"><div class="num grad-text">54K</div><div class="lbl">Today's Connects</div></div>
-        <div class="vibe-stat"><div class="num grad-text">47</div><div class="lbl">Countries</div></div>
-      </div>
-    </div>
-    <div class="card-stack">
-      <div class="stack-card sc-1"><div class="sc-face">👩🏾</div><div class="sc-info"><div class="sc-name">Amara, 26</div><div class="sc-vibe">🔥 Available · 1.2km away</div></div></div>
-      <div class="stack-card sc-2"><div class="sc-face">👨🏾</div><div class="sc-info"><div class="sc-name">Kwame, 30</div><div class="sc-vibe">😌 Exploring · 3km</div></div></div>
-      <div class="stack-card sc-3"><div class="sc-face">👩🏽</div><div class="sc-info"><div class="sc-name">Zara, 24</div><div class="sc-vibe">✨ Nearby · 5km</div></div></div>
+      <div class="hero-note">📍 Location-sorted matches &nbsp;·&nbsp; <span>Free to use</span></div>
     </div>
   </section>
   <section class="how">
     <h2>How it <span class="grad-text">works</span></h2>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><h3>Pay KES 200 once</h3><p>One payment unlocks everything forever — discover, chat, share photos. No subscriptions, no surprises.</p></div>
+      <div class="step"><div class="step-num">01</div><h3>Create your free profile</h3><p>Sign up in a minute — discover people, chat and share photos. No fees, no subscriptions.</p></div>
       <div class="step"><div class="step-num">02</div><h3>We find people near you</h3><p>Your GPS sorts the closest matches first. Same neighbourhood? They appear at the top.</p></div>
-      <div class="step"><div class="step-num">03</div><h3>Connect your way</h3><p>Both people spark → match → chat in real-time with photos, voice, and emoji. Your terms.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Connect your way</h3><p>Both people spark → match → chat in real-time with photos and emoji. Your terms.</p></div>
     </div>
   </section>
 </div>
@@ -429,11 +362,11 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
     <div class="form-group"><label>Password</label><input type="password" id="l-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
     <div class="field-error hidden" id="l-err"></div>
     <button class="btn btn-fire" style="width:100%;justify-content:center;margin-top:8px" id="l-btn" onclick="doLogin()">Let's Go 🔥</button>
-    <div class="auth-switch">New here? <a onclick="openAuth('signup')">Join for KES 200 →</a></div>
+    <div class="auth-switch">New here? <a onclick="openAuth('signup')">Join free →</a></div>
   </div>
   <div class="modal hidden" id="modal-signup">
     <button class="modal-close" onclick="closeAuth()">✕</button>
-    <h2>Create your profile ✨</h2><p class="sub">One step away — KES 200 unlocks everything</p>
+    <h2>Create your profile ✨</h2><p class="sub">Free to join — it takes a minute</p>
     <div class="form-row">
       <div class="form-group"><label>Name / Nickname</label><input type="text" id="s-name" placeholder="What to call you?"></div>
       <div class="form-group"><label>Age</label><input type="number" id="s-age" placeholder="25" min="18" max="99"></div>
@@ -463,55 +396,8 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
       </div>
     </div>
     <div class="field-error hidden" id="s-err"></div>
-    <button class="btn btn-fire" style="width:100%;justify-content:center;margin-top:8px" id="s-btn" onclick="proceedToPay()">Continue to Payment →</button>
-    <div class="auth-switch">Already paid? <a onclick="openAuth('login')">Sign in →</a></div>
-  </div>
-</div>
-
-<!-- ══════════════ PAYMENT ══════════════ -->
-<div class="modal-overlay hidden" id="pay-overlay">
-  <div class="pay-modal">
-    <button class="modal-close" onclick="closePay()">✕</button>
-    <div style="font-size:40px;margin-bottom:8px">🔓</div>
-    <h2>One-time Access Fee</h2><p class="sub" style="color:var(--muted);font-size:13px;margin-bottom:16px">Pay once · Access forever · No recurring charges</p>
-    <div class="pay-amount grad-text">KES 200</div>
-    <div class="pay-period">Lifetime access · All features unlocked</div>
-    <div class="pay-perks">
-      <div class="pay-perk">Up to 6 profile photos</div>
-      <div class="pay-perk">Unlimited sparks & matches</div>
-      <div class="pay-perk">Real-time chat with photo sharing</div>
-      <div class="pay-perk">GPS-sorted nearby discovery</div>
-      <div class="pay-perk">Block & report — full privacy control</div>
-    </div>
-    <p style="font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Choose Payment Method</p>
-    <div class="pay-methods">
-      <div class="pay-method sel" id="pm-mpesa" onclick="selPM('mpesa')"><div class="icon">📱</div><div class="name">M-Pesa</div><div class="hint">STK Push</div></div>
-      <div class="pay-method" id="pm-card" onclick="selPM('card')"><div class="icon">💳</div><div class="name">Card</div><div class="hint">Visa / Mastercard</div></div>
-      <div class="pay-method" id="pm-airtel" onclick="selPM('airtel')"><div class="icon">📶</div><div class="name">Airtel Money</div><div class="hint">Mobile money</div></div>
-      <div class="pay-method" id="pm-bank" onclick="selPM('bank')"><div class="icon">🏦</div><div class="name">Bank Transfer</div><div class="hint">Instant EFT</div></div>
-    </div>
-    <div class="pay-input-wrap show" id="fields-mpesa">
-      <div class="form-group"><label>M-Pesa Phone Number</label><input type="tel" id="mpesa-phone" placeholder="e.g. 0712 345 678"></div>
-      <p style="font-size:11px;color:var(--muted);margin-top:5px">📲 STK push will be sent. Paybill: <strong style="color:var(--volt)">123456</strong> · Account: <strong style="color:var(--volt)">MAPENZITELE</strong></p>
-    </div>
-    <div class="pay-input-wrap" id="fields-card">
-      <div class="form-group"><label>Card Number</label><input type="text" id="card-num" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"></div>
-      <div class="form-row">
-        <div class="form-group"><label>Expiry</label><input type="text" id="card-exp" placeholder="MM/YY" maxlength="5"></div>
-        <div class="form-group"><label>CVV</label><input type="text" id="card-cvv" placeholder="123" maxlength="3"></div>
-      </div>
-    </div>
-    <div class="pay-input-wrap" id="fields-airtel">
-      <div class="form-group"><label>Airtel Number</label><input type="tel" id="airtel-phone" placeholder="e.g. 0733 345 678"></div>
-      <p style="font-size:11px;color:var(--muted);margin-top:5px">You'll receive a prompt on your Airtel line.</p>
-    </div>
-    <div class="pay-input-wrap" id="fields-bank">
-      <p style="font-size:13px;color:var(--text);line-height:1.8">Transfer <strong style="color:var(--volt)">KES 200</strong> to:<br>Bank: <strong>Equity Bank</strong><br>Account: <strong>0123456789</strong><br>Name: <strong>MapenziTELE Ltd</strong><br><span style="color:var(--muted);font-size:11px">Use your email as reference. Access in 5 min.</span></p>
-    </div>
-    <div class="pay-status" id="pay-status"></div>
-    <div class="poll-progress" id="poll-progress"><div class="poll-bar"></div></div>
-    <button class="btn btn-volt" style="width:100%;justify-content:center;font-size:15px;padding:14px;margin-top:12px" id="pay-btn" onclick="doPayment()">Pay KES 200 →</button>
-    <p style="font-size:11px;color:var(--muted);margin-top:8px">🔒 Secured · No recurring charges</p>
+    <button class="btn btn-fire" style="width:100%;justify-content:center;margin-top:8px" id="s-btn" onclick="doSignup()">Create Account 🔥</button>
+    <div class="auth-switch">Already have an account? <a onclick="openAuth('login')">Sign in →</a></div>
   </div>
 </div>
 
@@ -524,7 +410,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
     <button class="sb-btn" id="sb-messages" onclick="showTab('messages',this)" title="Messages">💬<span class="sb-notif hidden" id="msg-badge">0</span></button>
     <div class="sb-div"></div>
     <button class="sb-btn" id="sb-notifications" onclick="showTab('notifications',this)" title="Notifications">🔔<span class="sb-notif hidden" id="notif-badge">0</span></button>
-    <button class="sb-btn" onclick="openPremium()" title="VIP">👑</button>
     <div class="sb-div"></div>
     <div onclick="showTab('profile',document.getElementById('sb-profile'))" style="cursor:pointer" title="Profile">
       <div id="sb-self-av" style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--fire),var(--fire2));display:flex;align-items:center;justify-content:center;font-size:18px;border:2px solid var(--border)">🙂</div>
@@ -593,7 +478,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
           <h2 id="prof-name-display">Loading…</h2>
           <p id="prof-meta-display">Complete your profile</p>
           <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-            <span class="badge badge-volt">✓ Paid Member</span>
             <span class="badge badge-online">● Online</span>
             <span class="badge badge-fire" id="prof-mood-badge">🔥 Spontaneous</span>
           </div>
@@ -641,9 +525,9 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
       <div class="section-box">
         <h3>⚡ My Vibes</h3>
         <div class="vibe-selector" id="vibe-selector">
-          <div class="vs-tag sel">🎵 Music</div><div class="vs-tag">✈️ Travel</div>
-          <div class="vs-tag sel">🍾 Nightlife</div><div class="vs-tag">💃 Dancing</div>
-          <div class="vs-tag">🏖️ Beach Vibes</div><div class="vs-tag sel">🍳 Cooking Together</div>
+          <div class="vs-tag">🎵 Music</div><div class="vs-tag">✈️ Travel</div>
+          <div class="vs-tag">🍾 Nightlife</div><div class="vs-tag">💃 Dancing</div>
+          <div class="vs-tag">🏖️ Beach Vibes</div><div class="vs-tag">🍳 Cooking Together</div>
           <div class="vs-tag">🎬 Movie Nights</div><div class="vs-tag">🌿 Nature Walks</div>
           <div class="vs-tag">🎲 Spontaneous Plans</div><div class="vs-tag">🥂 Wining & Dining</div>
           <div class="vs-tag">😂 Good Banter</div><div class="vs-tag">🎤 Live Music</div>
@@ -654,7 +538,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
         <h3>⚙️ Settings</h3>
         <div style="display:flex;flex-direction:column;gap:9px">
           <button class="btn btn-ghost btn-sm" style="width:fit-content" onclick="requestGeo()">📍 Update Location</button>
-          <button class="btn btn-ghost btn-sm" style="width:fit-content" onclick="openPremium()">👑 Upgrade to VIP</button>
           <button class="btn btn-ghost btn-sm" style="width:fit-content;border-color:#ff6b6b;color:#ff6b6b" onclick="doLogout()">🚪 Sign Out</button>
         </div>
       </div>
@@ -668,22 +551,6 @@ input::placeholder,textarea::placeholder{color:var(--muted)}
   <div class="pmodal" id="pmodal-inner"></div>
 </div>
 
-<!-- PREMIUM -->
-<div class="prem-ov hidden" id="prem-ov" onclick="if(event.target===this)closePremium()">
-  <div class="prem-modal">
-    <button class="modal-close" onclick="closePremium()">✕</button>
-    <div style="font-size:40px;margin-bottom:8px">👑</div>
-    <h2>Go <span class="grad-text">VIP</span></h2>
-    <p class="sub">On top of your KES 200 access — supercharge your experience</p>
-    <div class="plans">
-      <div class="plan" onclick="selPlan(this)"><div class="plan-lbl">Boost</div><div class="plan-price grad-text">KES 500</div><div class="plan-period">/ month</div><div class="plan-feat">Unlimited sparks</div><div class="plan-feat">See who liked you</div><div class="plan-feat">5 Super Sparks/day</div></div>
-      <div class="plan pop sel" onclick="selPlan(this)"><div class="plan-pb">🔥 Popular</div><div class="plan-lbl">Hot</div><div class="plan-price grad-text">KES 999</div><div class="plan-period">/ month</div><div class="plan-feat">Everything in Boost</div><div class="plan-feat">Weekly profile boost</div><div class="plan-feat">Read receipts</div><div class="plan-feat">Priority discovery</div></div>
-      <div class="plan" onclick="selPlan(this)"><div class="plan-lbl">Elite</div><div class="plan-price grad-text">KES 1,999</div><div class="plan-period">/ month</div><div class="plan-feat">Everything in Hot</div><div class="plan-feat">Message anyone</div><div class="plan-feat">VIP badge</div><div class="plan-feat">Incognito mode</div></div>
-    </div>
-    <button class="btn btn-fire" style="width:100%;justify-content:center;font-size:14px;padding:13px" onclick="subVIP()">Start Free VIP Trial 🔥</button>
-    <p style="font-size:11px;color:var(--muted);margin-top:8px">Cancel anytime · M-Pesa & Card accepted</p>
-  </div>
-</div>
 
 <script>
 /* ══ API LAYER ══════════════════════════════════════════ */
@@ -714,10 +581,6 @@ const PCACHE = {}; // id -> {name,...} so we never inject names into onclick str
 
 /* ══ STATE ══════════════════════════════════════════════ */
 let userGender='Woman', userLooking='Men', userMood='Spontaneous';
-let activePayMethod = 'mpesa';
-let pendingSignup = null;
-let checkoutRequestId = null;
-let pollInterval = null;
 let activeConvMatchId = null;
 let userLat=null, userLng=null;
 let allProfiles = [];
@@ -751,12 +614,6 @@ function initSocket() {
     hideTypingIndicator(senderId);
   });
 
-  socket.on('payment:confirmed', ({ userId }) => {
-    if (ME && ME.id === userId) {
-      ME.is_paid = true;
-      showToast('✅ Payment confirmed! Welcome to mapenziTELE 🔥');
-    }
-  });
 }
 
 /* ══ AUTH ════════════════════════════════════════════════ */
@@ -786,7 +643,7 @@ async function doLogin() {
   } catch(e) { showFieldErr(err, e.message); btn.innerHTML = "Let's Go 🔥"; btn.disabled = false; }
 }
 
-async function proceedToPay() {
+async function doSignup() {
   const n=document.getElementById('s-name').value.trim();
   const a=document.getElementById('s-age').value;
   const e=document.getElementById('s-email').value.trim();
@@ -796,79 +653,14 @@ async function proceedToPay() {
   if(parseInt(a)<18){showFieldErr(err,'Must be 18 or older');return}
   if(p.length<6){showFieldErr(err,'Password must be at least 6 characters');return}
   const btn = document.getElementById('s-btn');
-  btn.innerHTML = '<span class="spinner"></span> Registering…'; btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Creating account…'; btn.disabled = true;
   try {
     const data = await api('POST', '/auth/register', { name:n, age:parseInt(a), email:e, password:p, gender:userGender, looking_for:userLooking, mood:userMood });
     TOKEN = data.token; ME = data.user;
     localStorage.setItem('mt_token', TOKEN);
     if(window.flushPendingPushToken) window.flushPendingPushToken();
-    closeAuth();
-    document.getElementById('pay-overlay').classList.remove('hidden');
-  } catch(e) { showFieldErr(err, e.message); btn.innerHTML='Continue to Payment →'; btn.disabled=false; }
-}
-
-function closePay() {
-  document.getElementById('pay-overlay').classList.add('hidden');
-  clearInterval(pollInterval);
-  const s=document.getElementById('pay-status');s.className='pay-status';s.textContent='';
-  document.getElementById('poll-progress').style.display='none';
-  document.getElementById('pay-btn').disabled=false;document.getElementById('pay-btn').textContent='Pay KES 200 →';
-}
-
-function selPM(m) {
-  activePayMethod=m;
-  ['mpesa','card','airtel','bank'].forEach(k=>{
-    document.getElementById('pm-'+k).classList.toggle('sel',k===m);
-    document.getElementById('fields-'+k).classList.toggle('show',k===m);
-  });
-}
-function fmtCard(inp){let v=inp.value.replace(/\D/g,'').substring(0,16);inp.value=v.replace(/(.{4})/g,'$1 ').trim();}
-
-async function doPayment() {
-  const btn=document.getElementById('pay-btn');
-  const status=document.getElementById('pay-status');
-  const poll=document.getElementById('poll-progress');
-
-  if (activePayMethod === 'mpesa') {
-    const phone = document.getElementById('mpesa-phone').value.trim();
-    if(!phone){showToast('Enter your M-Pesa number');return}
-    btn.innerHTML='<span class="spinner spinner-dark"></span> Sending STK push…'; btn.disabled=true;
-    try {
-      const res = await api('POST', '/payment/mpesa/stkpush', { phone });
-      checkoutRequestId = res.checkoutRequestId;
-      status.className='pay-status processing';
-      status.innerHTML='<span class="spinner"></span> STK Push sent — enter your M-Pesa PIN on your phone';
-      poll.style.display='block';
-      // Poll for payment confirmation
-      let attempts=0;
-      pollInterval=setInterval(async()=>{
-        attempts++;
-        if(attempts>60){clearInterval(pollInterval);status.className='pay-status error';status.textContent='Still processing. If money was deducted, sign in again in a few minutes — your access will be active.';btn.disabled=false;btn.textContent='Pay KES 200 →';poll.style.display='none';return}
-        try{
-          const st = await api('GET',`/payment/mpesa/status/${checkoutRequestId}`);
-          if(st.status==='completed'){clearInterval(pollInterval);completeAccess();}
-          else if(st.status==='failed'){clearInterval(pollInterval);status.className='pay-status error';status.textContent='Payment failed. Try again.';btn.disabled=false;btn.textContent='Pay KES 200 →';poll.style.display='none';}
-        }catch(_){}
-      }, 3000);
-    } catch(e) { status.className='pay-status error'; status.textContent=e.message; btn.disabled=false; btn.innerHTML='Pay KES 200 →'; }
-
-  } else if (activePayMethod === 'bank') {
-    // Bank transfer: manual confirmation
-    status.className='pay-status processing'; status.textContent='Transfer KES 200 to the account above. Access granted within 5 minutes.';
-    btn.innerHTML='Waiting for transfer…'; btn.disabled=true;
-  } else {
-    // Card / Airtel gateways not integrated yet — steer to M-Pesa
-    status.className='pay-status error';
-    status.textContent='Card & Airtel Money are coming soon. Please pay with M-Pesa for instant access.';
-    selPM('mpesa');
-  }
-}
-
-function completeAccess() {
-  const s=document.getElementById('pay-status');
-  s.className='pay-status success'; s.textContent='✅ Payment confirmed! Welcome to mapenziTELE!';
-  document.getElementById('poll-progress').style.display='none';
-  setTimeout(()=>{ closePay(); ME.is_paid=true; launchApp(); showToast('🎉 Welcome! You\'re in 🔥'); }, 1500);
+    closeAuth(); launchApp();
+  } catch(e) { showFieldErr(err, e.message); btn.innerHTML='Create Account 🔥'; btn.disabled=false; }
 }
 
 async function doLogout() {
@@ -893,10 +685,6 @@ async function launchApp() {
   loadConversations();
   loadNotifications();
   setTimeout(requestGeo, 600);
-  setInterval(()=>{
-    const n=(1700+Math.floor(Math.random()*400)).toLocaleString();
-    document.getElementById('online-count').textContent=n+' people online'+( userLat?' · sorted by distance':'');
-  },6000);
 }
 
 // Auto-login if token present
@@ -904,8 +692,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   if(TOKEN) {
     try {
       ME = await api('GET','/auth/me');
-      if(ME && ME.is_paid) { launchApp(); return; }
-      else if(ME) { document.getElementById('pay-overlay').classList.remove('hidden'); return; }
+      if(ME) { launchApp(); return; }
     } catch(_) { localStorage.removeItem('mt_token'); TOKEN=null; }
   }
   // Drop zone drag events
@@ -1007,14 +794,12 @@ function renderGrid(people, gridId) {
         ${isNearby?'<div class="nearby-chip">📍 Near You</div>':''}
         <div class="pcard-pills">
           <span class="ppill av">${p.is_online?'⚡ Online':'Recently active'}</span>
-          ${p.is_vip?'<span class="ppill vip">👑 VIP</span>':''}
         </div>
       </div>
       <div class="pcard-body">
         <div class="pcard-name-row">
           <span class="pcard-name">${esc(p.name)}, ${esc(p.age)}</span>
           ${p.is_online?'<span class="online-dot"></span>':''}
-          ${p.is_verified?'<span style="font-size:11px;color:var(--lilac)">✓</span>':''}
         </div>
         <div class="pcard-meta">${distStr}</div>
         <div class="pcard-tl">${esc(p.tagline||p.mood||'')}</div>
@@ -1069,8 +854,6 @@ async function openPModal(id) {
       </div>
       <div class="pmodal-info">
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px">
-          ${p.is_verified?'<span class="badge badge-lilac">✓ Verified</span>':''}
-          ${p.is_vip?'<span class="badge badge-volt">👑 VIP</span>':''}
           ${p.mood?`<span class="badge badge-fire">${esc(p.mood)}</span>`:''}
         </div>
         <h2>${esc(p.name)}, ${esc(p.age)}</h2>
@@ -1295,10 +1078,10 @@ function populateProfile() {
       document.getElementById('sb-self-av').innerHTML=`<img src="${primary.url}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
     }
   }
-  if(ME.vibes&&ME.vibes.length){
+  {
+    const mine=ME.vibes||[];
     document.querySelectorAll('.vs-tag').forEach(t=>{
-      const txt=t.textContent.trim();
-      if(ME.vibes.includes(txt))t.classList.add('sel');else t.classList.remove('sel');
+      t.classList.toggle('sel',mine.includes(t.textContent.trim()));
     });
   }
 }
@@ -1402,11 +1185,6 @@ async function saveProfile() {
   finally{btn.innerHTML='Save Profile';btn.disabled=false;}
 }
 
-/* ══ PREMIUM ════════════════════════════════════════════ */
-function openPremium(){document.getElementById('prem-ov').classList.remove('hidden')}
-function closePremium(){document.getElementById('prem-ov').classList.add('hidden')}
-function selPlan(el){document.querySelectorAll('.plan').forEach(p=>p.classList.remove('sel'));el.classList.add('sel')}
-function subVIP(){closePremium();showToast('👑 VIP plans launching soon — stay tuned!')}
 
 /* ══ UTILS ══════════════════════════════════════════════ */
 function showFieldErr(el, msg){el.textContent=msg;el.classList.remove('hidden');setTimeout(()=>el.classList.add('hidden'),4000);}

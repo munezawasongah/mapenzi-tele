@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const db = require('../db');
 const auth = require('../middleware/auth');
-const { requirePaid } = require('../middleware/auth');
 const { sendPush } = require('../utils/push');
 
 // POST /api/matches/spark  — like or super-like someone
-router.post('/spark', auth, requirePaid, async (req, res) => {
+router.post('/spark', auth, async (req, res) => {
   const { receiver_id, type = 'like' } = req.body;
   if (!receiver_id) return res.status(400).json({ error: 'receiver_id required' });
   if (receiver_id === req.user.id) return res.status(400).json({ error: 'Cannot spark yourself' });
@@ -99,7 +98,7 @@ router.post('/spark', auth, requirePaid, async (req, res) => {
 });
 
 // GET /api/matches  — all matches for current user
-router.get('/', auth, requirePaid, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const { rows } = await db.query(
       `SELECT m.id as match_id, m.created_at as matched_at,
@@ -131,7 +130,7 @@ router.delete('/:matchId', auth, async (req, res) => {
 });
 
 // GET /api/matches/who-sparked-me
-router.get('/who-sparked-me', auth, requirePaid, async (req, res) => {
+router.get('/who-sparked-me', auth, async (req, res) => {
   try {
     const { rows } = await db.query(
       `SELECT s.type, s.created_at, u.id, u.name, u.age, u.city,

@@ -28,7 +28,7 @@ router.post('/register', [
     const hash = await bcrypt.hash(password, 12);
     const { rows } = await db.query(
       `INSERT INTO users (name, email, password_hash, age, gender, looking_for, mood, city)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id, name, email, is_paid, is_vip`,
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id, name, email`,
       [name, email, hash, age, gender, looking_for, mood, city || null]
     );
     const user = rows[0];
@@ -64,7 +64,7 @@ router.post('/login', [
       user: {
         id: user.id, name: user.name, email: user.email,
         age: user.age, city: user.city, mood: user.mood,
-        is_paid: user.is_paid, is_vip: user.is_vip, is_verified: user.is_verified
+        is_verified: user.is_verified
       }
     });
   } catch (e) {
@@ -79,7 +79,7 @@ router.get('/me', authMiddleware, async (req, res) => {
     const { rows } = await db.query(
       `SELECT u.id, u.name, u.email, u.age, u.gender, u.looking_for, u.mood,
               u.city, u.occupation, u.tagline, u.bio, u.lat, u.lng,
-              u.is_paid, u.is_vip, u.is_verified, u.is_online,
+              u.is_verified, u.is_online,
               COALESCE(json_agg(p ORDER BY p.sort_order) FILTER (WHERE p.id IS NOT NULL), '[]') as photos,
               COALESCE((SELECT json_agg(v.tag) FROM vibes v WHERE v.user_id=u.id), '[]') as vibes
        FROM users u

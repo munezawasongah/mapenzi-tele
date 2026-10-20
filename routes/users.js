@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const db = require('../db');
 const auth = require('../middleware/auth');
-const { requirePaid } = require('../middleware/auth');
 
 // Haversine distance in km
 function haversine(lat1, lng1, lat2, lng2) {
@@ -13,21 +12,20 @@ function haversine(lat1, lng1, lat2, lng2) {
 }
 
 // GET /api/users/discover  — sorted by distance if user has location
-router.get('/discover', auth, requirePaid, async (req, res) => {
+router.get('/discover', auth, async (req, res) => {
   try {
     const me = await db.query('SELECT lat, lng, looking_for, gender FROM users WHERE id=$1', [req.user.id]);
     const { lat, lng } = me.rows[0];
 
     const { rows } = await db.query(
       `SELECT u.id, u.name, u.age, u.city, u.mood, u.tagline, u.bio,
-              u.occupation, u.lat, u.lng, u.is_online, u.is_verified, u.is_vip,
+              u.occupation, u.lat, u.lng, u.is_online, u.is_verified,
               u.last_seen,
               COALESCE(json_agg(p ORDER BY p.sort_order) FILTER (WHERE p.id IS NOT NULL), '[]') as photos,
               COALESCE((SELECT json_agg(v.tag) FROM vibes v WHERE v.user_id=u.id), '[]') as vibes
        FROM users u
        LEFT JOIN photos p ON p.user_id=u.id
        WHERE u.id != $1
-         AND u.is_paid = TRUE
          AND u.id NOT IN (
            SELECT receiver_id FROM sparks WHERE sender_id=$1
            UNION SELECT sender_id FROM sparks WHERE receiver_id=$1
@@ -61,7 +59,7 @@ router.get('/:id', auth, async (req, res) => {
   try {
     const { rows } = await db.query(
       `SELECT u.id, u.name, u.age, u.city, u.mood, u.tagline, u.bio,
-              u.occupation, u.lat, u.lng, u.is_online, u.is_verified, u.is_vip, u.last_seen,
+              u.occupation, u.lat, u.lng, u.is_online, u.is_verified, u.last_seen,
               COALESCE(json_agg(p ORDER BY p.sort_order) FILTER (WHERE p.id IS NOT NULL), '[]') as photos,
               COALESCE((SELECT json_agg(v.tag) FROM vibes v WHERE v.user_id=u.id), '[]') as vibes
        FROM users u LEFT JOIN photos p ON p.user_id=u.id

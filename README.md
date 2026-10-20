@@ -1,6 +1,6 @@
 # mapenziTELE 🔥
 
-> Premium casual dating platform — Node.js + PostgreSQL + Socket.IO + M-Pesa
+> Free casual dating platform — Node.js + PostgreSQL + Socket.IO
 
 ---
 
@@ -28,11 +28,7 @@ JWT_SECRET=<generate with: node -e "console.log(require('crypto').randomBytes(48
 APP_URL=https://YOUR-APP.up.railway.app
 CLIENT_URL=https://YOUR-APP.up.railway.app
 NODE_ENV=production
-MPESA_CONSUMER_KEY=<from Safaricom Developer Portal>
-MPESA_CONSUMER_SECRET=<from Safaricom Developer Portal>
-MPESA_SHORTCODE=<your Paybill or Till number>
-MPESA_PASSKEY=<from Safaricom>
-MPESA_ENV=production
+UPLOAD_DIR=/data/uploads   # attach a Railway Volume at /data to keep photos
 ```
 
 ### 4. Run Database Migration
@@ -51,7 +47,7 @@ Railway auto-deploys on every push to `main`.
 ```bash
 npm install
 cp .env.example .env
-# Fill in .env values (use MPESA_ENV=sandbox for testing)
+# Fill in .env values
 npm run migrate
 npm run dev
 ```
@@ -69,9 +65,9 @@ mapenzitele/
 │   ├── matches.js      # Sparks, matches, who-liked-me
 │   ├── messages.js     # Chat inbox + send
 │   ├── photos.js       # Upload, delete, set primary
-│   └── payment.js      # M-Pesa STK push + callback
+│   └── push.js         # Push notification token registration
 ├── middleware/
-│   └── auth.js         # JWT verify + requirePaid guard
+│   └── auth.js         # JWT verify
 ├── db/
 │   ├── index.js        # PostgreSQL pool
 │   └── migrate.js      # Schema migration
@@ -83,17 +79,9 @@ mapenzitele/
 └── package.json
 ```
 
-## 🔑 M-Pesa Setup
-1. Register at https://developer.safaricom.co.ke
-2. Create an app → get Consumer Key & Secret
-3. Use Paybill **174379** + your Passkey for sandbox
-4. Set `CallBackURL` = `https://YOUR-APP.up.railway.app/api/payment/mpesa/callback`
-5. Switch `MPESA_ENV=production` and use your real Paybill for live
-
 ## 🔒 Security Features
 - Passwords hashed with bcrypt (12 rounds)
 - JWT tokens (30-day expiry)
 - Rate limiting on all endpoints
 - Helmet.js HTTP headers
-- requirePaid middleware guards all paid features
 - Input validation on all routes

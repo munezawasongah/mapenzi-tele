@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
+const db = require('./db');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,7 +19,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({ origin: process.env.CLIENT_URL || '*', credentials: true }));
 app.set('trust proxy', 1);
 app.use((req, res, next) => {
-  if (req.headers.host === 'mapenzitele.co.ke' && !req.path.startsWith('/api/payment/mpesa/callback')) {
+  if (req.headers.host === 'mapenzitele.co.ke') {
     return res.redirect(301, 'https://www.mapenzitele.co.ke' + req.url);
   }
   next();
@@ -29,8 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, max: 600,
-  message: { error: 'Too many requests' },
-  skip: (req) => req.path.startsWith('/payment/mpesa/callback')
+  message: { error: 'Too many requests' }
 });
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 20, message: { error: 'Too many auth attempts' } });
 app.use('/api/', limiter);
@@ -45,7 +45,6 @@ app.use('/api/auth',    require('./routes/auth'));
 app.use('/api/users',   require('./routes/users'));
 app.use('/api/matches', require('./routes/matches'));
 app.use('/api/messages',require('./routes/messages'));
-app.use('/api/payment', require('./routes/payment'));
 app.use('/api/photos',  require('./routes/photos'));
 app.use('/api/push',    require('./routes/push'));
 
@@ -57,6 +56,7 @@ io.on('connection', (socket) => {
 
   socket.on('user:online', (userId) => {
     onlineUsers.set(userId, socket.id);
+    db.query('UPDATE users SET is_online=TRUE, last_seen=NOW() WHERE id=$1', [userId]).catch(() => {});
     io.emit('user:status', { userId, online: true });
   });
 
@@ -74,6 +74,7 @@ io.on('connection', (socket) => {
     for (const [userId, sid] of onlineUsers.entries()) {
       if (sid === socket.id) {
         onlineUsers.delete(userId);
+        db.query('UPDATE users SET is_online=FALSE, last_seen=NOW() WHERE id=$1', [userId]).catch(() => {});
         io.emit('user:status', { userId, online: false });
         break;
       }
@@ -97,4 +98,8 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`🔥 mapenziTELE running on port ${PORT}`));
+server.listen(PORT, () => {
+  console.log(`🔥 mapenziTELE running on port ${PORT}`);
+  // Nobody is connected after a (re)start — clear stale "online" flags so status is truthful
+  db.query('UPDATE users SET is_online=FALSE').catch(() => {});
+});

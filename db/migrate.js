@@ -19,9 +19,7 @@ async function migrate() {
       bio TEXT,
       lat DECIMAL(10,7),
       lng DECIMAL(10,7),
-      is_paid BOOLEAN DEFAULT FALSE,
       is_verified BOOLEAN DEFAULT FALSE,
-      is_vip BOOLEAN DEFAULT FALSE,
       is_online BOOLEAN DEFAULT FALSE,
       last_seen TIMESTAMPTZ DEFAULT NOW(),
       created_at TIMESTAMPTZ DEFAULT NOW()
@@ -68,19 +66,6 @@ async function migrate() {
       type VARCHAR(20) DEFAULT 'text',
       media_url VARCHAR(500),
       is_read BOOLEAN DEFAULT FALSE,
-      created_at TIMESTAMPTZ DEFAULT NOW()
-    );
-
-    CREATE TABLE IF NOT EXISTS payments (
-      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-      user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-      amount INT NOT NULL,
-      currency VARCHAR(10) DEFAULT 'KES',
-      method VARCHAR(30),
-      phone VARCHAR(30),
-      mpesa_receipt VARCHAR(100),
-      checkout_request_id VARCHAR(200),
-      status VARCHAR(30) DEFAULT 'pending',
       created_at TIMESTAMPTZ DEFAULT NOW()
     );
 
